@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { Header } from './Header/Header'
 import { MainWrapper } from './MainWrapper'
 import { SearchResults } from './SearchResults/SearchResults'
-const myHeaders = new Headers()
-myHeaders.append('Auth', sessionStorage.getItem('API_Key'))
-myHeaders.append('Content-Type', 'application-json')
 
-const requestOptions = {
-  method: 'GET',
-  headers: myHeaders,
-  redirect: 'follow',
-}
-const onSearch = (id, setLoading, setSearchResultData, setStandByMessage) => {
+const onSearch = (
+  id,
+  setLoading,
+  setSearchResultData,
+  setStandByMessage,
+  requestOptions
+) => {
   if (id === '') return
 
   setLoading(true)
@@ -37,11 +35,27 @@ export const MainPage = () => {
   const [isLoading, setLoading] = useState(false)
   const [standByMessage, setStandByMessage] = useState(null)
 
+  const myHeaders = new Headers()
+  myHeaders.append('Auth', sessionStorage.getItem('API_Key'))
+  myHeaders.append('Content-Type', 'application-json')
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  }
+
   return (
     <MainWrapper>
       <Header
         onSearch={(id) =>
-          onSearch(id, setLoading, setSearchResultData, setStandByMessage)
+          onSearch(
+            id,
+            setLoading,
+            setSearchResultData,
+            setStandByMessage,
+            requestOptions
+          )
         }
       />
       <SearchResults

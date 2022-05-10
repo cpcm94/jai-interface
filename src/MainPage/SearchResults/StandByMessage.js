@@ -9,8 +9,12 @@ const Message = styled.div`
   opacity: 0.8;
 `
 
-export const StandByMessage = ({
-  message = 'Insert your JAI API key and query an ID value to start',
-}) => {
-  return <Message>{message}</Message>
+export const StandByMessage = ({ message }) => {
+  return (
+    <Message>
+      {message
+        ? message
+        : 'Insert your JAI API key and query an ID value to start'}
+    </Message>
+  )
 }
