@@ -30,6 +30,7 @@ export const ResultsTable = ({
     setRowsPerPage(+event.target.value)
     setTablePage(0)
   }
+
   return (
     <TableWrapper>
       <TableLabel>Similar items to ID: {results[0].id}</TableLabel>
@@ -79,6 +80,7 @@ export const ResultsTable = ({
         page={tablePage}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        rowsPerPageOptions={[5, 10, 20, 50]}
         count={results.length}
       />
     </TableWrapper>
