@@ -6,6 +6,14 @@ import {
   StyledInput,
   StyledLabel,
 } from './AuthKeyInput.styles'
+import { toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+const toastConfig = {
+  position: 'top-center',
+  hideProgressBar: true,
+  transition: Slide,
+}
 
 export const AuthKeyInput = () => {
   const [authKey, setAuthKey] = useState(
@@ -22,6 +30,7 @@ export const AuthKeyInput = () => {
   const saveAuthKey = (authKey) => {
     sessionStorage.setItem('API_Key', authKey)
     window.dispatchEvent(new Event('storage'))
+    toast.success('API Key Saved', toastConfig)
     setLockedInput(true)
   }
 
