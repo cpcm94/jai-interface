@@ -6,7 +6,7 @@ import { ResultsTable } from './ResultsTable/ResultsTable'
 import { LoaderWrapper, ResultsWrapper, Wrapper } from './SearchResults.styles'
 import { StandByMessage } from './StandByMessage'
 
-export const SearchResults = ({ isLoading, results = [], standByMessage }) => {
+export const SearchResults = ({ isLoading, results = [] }) => {
   const [displayItemId, setDisplayItemId] = useState('')
   const [imageLoading, setImageLoading] = useState(false)
 
@@ -25,7 +25,7 @@ export const SearchResults = ({ isLoading, results = [], standByMessage }) => {
       ) : (
         <>
           {!results[0] ? (
-            <StandByMessage message={standByMessage} />
+            <StandByMessage />
           ) : (
             <ResultsWrapper>
               <DisplayItem

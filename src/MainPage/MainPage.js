@@ -1,39 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from './Header/Header'
 import { MainWrapper } from './MainWrapper'
+import { onSearch } from './onSearch'
 import { SearchResults } from './SearchResults/SearchResults'
-
-const onSearch = (
-  id,
-  setLoading,
-  setSearchResultData,
-  setStandByMessage,
-  requestOptions
-) => {
-  if (id === '') return
-
-  setLoading(true)
-  fetch(`/.netlify/functions/getSimilarityById?id=${id}`, requestOptions)
-    .then((response) => response.json())
-    .then((json) => {
-      if (json.results) {
-        setSearchResultData(json.results)
-      } else {
-        setStandByMessage(json.error)
-        setSearchResultData([])
-      }
-      setLoading(false)
-    })
-    .catch((error) => {
-      console.log('error', error)
-      setLoading(false)
-    })
-}
+import { ToastContainer } from 'react-toastify'
 
 export const MainPage = () => {
   const [searchResultData, setSearchResultData] = useState([])
   const [isLoading, setLoading] = useState(false)
-  const [standByMessage, setStandByMessage] = useState(null)
 
   const requestOptions = {
     method: 'GET',
@@ -59,20 +33,11 @@ export const MainPage = () => {
     <MainWrapper>
       <Header
         onSearch={(id) =>
-          onSearch(
-            id,
-            setLoading,
-            setSearchResultData,
-            setStandByMessage,
-            requestOptions
-          )
+          onSearch(id, setLoading, setSearchResultData, requestOptions)
         }
       />
-      <SearchResults
-        isLoading={isLoading}
-        results={searchResultData}
-        standByMessage={standByMessage}
-      />
+      <SearchResults isLoading={isLoading} results={searchResultData} />
+      <ToastContainer />
     </MainWrapper>
   )
 }
