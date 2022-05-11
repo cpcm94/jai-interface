@@ -24,7 +24,7 @@ export async function handler(event) {
   }
 
   await similaritySearchById(
-    'productimages',
+    process.env.COLLECTION_NAME,
     [parseInt(event.queryStringParameters.id)],
     100
   )

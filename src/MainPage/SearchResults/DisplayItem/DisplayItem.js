@@ -10,7 +10,7 @@ export const DisplayItem = ({ id, imageLoading, setImageLoading }) => {
         <DotLoader color={colors.orange} loading={imageLoading} />
       )}
       <Image
-        src={`https://myceliademo.blob.core.windows.net/fashion-imgs/images/${id}.jpg `}
+        src={`${process.env.REACT_APP_IMAGES_ENDPOINT}${id}.jpg`}
         onLoad={() => setImageLoading(false)}
         isLoading={imageLoading}
         alt='item'
