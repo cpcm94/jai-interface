@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   margin: 2rem;
   display: flex;
   justify-content: center;
-  height: calc(100vh - 8.75rem);
+  min-height: calc(100vh - 8.75rem);
 `
 export const LoaderWrapper = styled.div`
   align-self: center;

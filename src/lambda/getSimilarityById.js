@@ -26,7 +26,7 @@ export async function handler(event) {
   await similaritySearchById(
     'productimages',
     [parseInt(event.queryStringParameters.id)],
-    20
+    100
   )
     .then((response) => {
       results = response.similarity[0].results

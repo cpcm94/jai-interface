@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Header } from './Header/Header'
 import { MainWrapper } from './MainWrapper'
 import { SearchResults } from './SearchResults/SearchResults'
@@ -35,15 +35,25 @@ export const MainPage = () => {
   const [isLoading, setLoading] = useState(false)
   const [standByMessage, setStandByMessage] = useState(null)
 
-  const myHeaders = new Headers()
-  myHeaders.append('Auth', sessionStorage.getItem('API_Key'))
-  myHeaders.append('Content-Type', 'application-json')
-
   const requestOptions = {
     method: 'GET',
-    headers: myHeaders,
+    headers: {
+      Auth: sessionStorage.getItem('API_Key'),
+      'Content-Type': 'application-json',
+    },
     redirect: 'follow',
   }
+
+  useEffect(() => {
+    window.addEventListener('storage', () => {
+      requestOptions.headers.Auth = sessionStorage.getItem('API_Key')
+    })
+
+    return () =>
+      window.removeEventListener('storage', () => {
+        requestOptions.headers.Auth = sessionStorage.getItem('API_Key')
+      })
+  })
 
   return (
     <MainWrapper>

@@ -21,6 +21,7 @@ export const AuthKeyInput = () => {
 
   const saveAuthKey = (authKey) => {
     sessionStorage.setItem('API_Key', authKey)
+    window.dispatchEvent(new Event('storage'))
     setLockedInput(true)
   }
 
