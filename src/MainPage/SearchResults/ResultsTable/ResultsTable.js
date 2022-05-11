@@ -33,7 +33,7 @@ export const ResultsTable = ({
 
   return (
     <TableWrapper>
-      <TableLabel>Similar items to ID: {results[0].id}</TableLabel>
+      <TableLabel>Items most similar to ID: {results[0].id}</TableLabel>
       <StyledTableContainer>
         <Table stickyHeader>
           <TableHead>
