@@ -17,7 +17,7 @@ COLLECTION_NAME=your_collection_name REACT_APP_IMAGES_ENDPOINT=endpoint/for/your
 | Variable                  | Description              |
 | ------------------------- | ------------------------ |
 | COLLECTION_NAME           | Your JAI collection name |
-| REACT_APP_IMAGES_ENDPOINT | Endpoint for you images  |
+| REACT_APP_IMAGES_ENDPOINT | Endpoint for your images  |
 
 ## Running locally
 
